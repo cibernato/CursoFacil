@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.VerCurso"
+    android:orientation="vertical"
+    android:id="@+id/ver_curso_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Empieza a tomar fotos pexd"
+        android:visibility="visible"
+        android:id="@+id/status_vacio"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:textSize="22sp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Toamr fotex"
+            android:id="@+id/tomar_foto"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:paddingTop="15dp"
+            />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recycler_view_cursos_fotos" />
+
+
+
+
+</LinearLayout>

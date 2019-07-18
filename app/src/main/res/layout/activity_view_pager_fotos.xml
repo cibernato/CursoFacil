@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ViewPagerFotos"
+    android:orientation="vertical">
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="90" />
+    <GridLayout
+        android:id="@+id/detalles_foto"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+
+        android:orientation="horizontal"
+        android:columnCount="3"
+        android:rowCount="1">
+        <ImageButton
+            android:layout_columnWeight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/foto_eliminar"
+            android:src="@drawable/ic_delete_black_24dp"
+            android:background="#00FFFDFD"
+            android:layout_marginLeft="8dp"/>
+        <ImageButton
+            android:layout_columnWeight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/foto_compartir"
+            android:src="@drawable/ic_share_black_24dp"
+            android:background="#00FFFDFD"
+            android:layout_marginLeft="8dp"/>
+
+        <ImageButton
+            android:layout_columnWeight="1"
+            android:layout_height="match_parent"
+            android:id="@+id/foto_detalle"
+            android:src="@drawable/ic_three_dots_svgrepo_com"
+            android:background="#00FFFDFD"
+            android:rotation="90"
+            android:layout_marginLeft="8dp"/>
+    </GridLayout>
+
+</LinearLayout>
