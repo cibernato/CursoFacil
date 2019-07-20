@@ -43,46 +43,30 @@ public class ViewPagerFotos extends AppCompatActivity {
         viewPager = findViewById(R.id.view_pager);
         viewPagerAdapter = new ViewPagerAdapter(ViewPagerFotos.this, foto);
         viewPager.setAdapter(viewPagerAdapter);
+
         viewPager.setCurrentItem(getIntent().getIntExtra("num", 0));
         eliminar = findViewById(R.id.foto_eliminar);
         compartir = findViewById(R.id.foto_compartir);
         detalles = findViewById(R.id.foto_detalle);
         final Context context = this;
-        eliminar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-                builder.setMessage("¿Desea eliminar esta foto?")
-                        .setCancelable(false)
-                        .setPositiveButton("Si", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                eliminarFoto(viewPager.getCurrentItem());
-
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            }
+        eliminar.setOnClickListener(v -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setMessage("¿Desea eliminar esta foto?")
+                    .setCancelable(false)
+                    .setPositiveButton("Si", (dialog, which) -> eliminarFoto(viewPager.getCurrentItem()))
+                    .setNegativeButton("No", (dialog, which) -> dialog.cancel());
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         });
-        compartir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                File f = new File(fotos.get(viewPager.getCurrentItem()));
-                Uri photoURI = FileProvider.getUriForFile(context,
-                        "com.proyecto.jerbo.cursofacil.fileprovider",
-                        f);
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.putExtra(Intent.EXTRA_STREAM, photoURI);
-                intent.setType("image/*");
-                startActivity(Intent.createChooser(intent, "Share Image:"));
-            }
+        compartir.setOnClickListener(v -> {
+            File f = new File(fotos.get(viewPager.getCurrentItem()));
+            Uri photoURI = FileProvider.getUriForFile(context,
+                    "com.proyecto.jerbo.cursofacil.fileprovider",
+                    f);
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.putExtra(Intent.EXTRA_STREAM, photoURI);
+            intent.setType("image/*");
+            startActivity(Intent.createChooser(intent, "Share Image:"));
         });
         registerForContextMenu(detalles);
     }
@@ -104,6 +88,7 @@ public class ViewPagerFotos extends AppCompatActivity {
                 detallesImagen();
                 return true;
             case R.id.editar_foto_menu:
+                //TODO edit photos and saved them
                 Toast.makeText(this, "Por implementar xd", Toast.LENGTH_SHORT).show();
                 return true;
             default:
@@ -131,5 +116,9 @@ public class ViewPagerFotos extends AppCompatActivity {
         finish();
     }
 
-
+    @Override
+    public void onBackPressed() {
+        viewPagerAdapter.recycle();
+        super.onBackPressed();
+    }
 }
