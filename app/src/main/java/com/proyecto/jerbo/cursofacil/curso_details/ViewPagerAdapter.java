@@ -1,4 +1,4 @@
-package com.proyecto.jerbo.cursofacil.Adapters;
+package com.proyecto.jerbo.cursofacil.curso_details;
 
 import android.app.Activity;
 import android.content.Context;

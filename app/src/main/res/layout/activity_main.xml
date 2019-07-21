@@ -1,21 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/contentMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.MainActivity"
     android:orientation="vertical"
-    android:id="@+id/contentMain">
+    tools:context=".main_activity.MainActivity"
+    android:padding="8dp">
 
 
     <TextView
-        android:paddingTop="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_gravity="center_horizontal"
+        android:paddingTop="15dp"
         android:text="Estamos añadiendo nuevas fiuncio0nalidades por mientras xd entre ellos almacenadimento de imagenes domucneot sy todo ese tipo de cosas "
-        android:textAlignment="center"/>
+        android:textAlignment="center" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_cursos"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        tools:context=".main_activity.Inicio" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Otras funciones "
+            android:layout_centerHorizontal="true"/>
+        <Button
+            android:id="@+id/calculadora_promedios"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calculadora"/>
+    </RelativeLayout>
+
 
 
 </LinearLayout>

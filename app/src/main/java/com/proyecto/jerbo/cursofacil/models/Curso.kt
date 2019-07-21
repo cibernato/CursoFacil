@@ -1,4 +1,4 @@
-package com.proyecto.jerbo.cursofacil.Class
+package com.proyecto.jerbo.cursofacil.models
 
 import java.io.File
 import java.io.Serializable

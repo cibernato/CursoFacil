@@ -1,4 +1,4 @@
-package com.proyecto.jerbo.cursofacil.Adapters;
+package com.proyecto.jerbo.cursofacil.curso_details;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.proyecto.jerbo.cursofacil.Class.Curso;
+import com.proyecto.jerbo.cursofacil.models.Curso;
 import com.proyecto.jerbo.cursofacil.R;
 import java.util.ArrayList;
 

@@ -18,12 +18,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <activity android:name=".Activities.ViewPagerFotos" />
         <activity
-            android:name=".Activities.VerCurso"
-            android:parentActivityName=".Activities.MainActivity" />
-        <activity android:name=".Activities.MainActivity">
+            android:name=".calculadora_promedios.CalculadoraPromedio"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".curso_details.ViewPagerFotos" />
+        <activity
+            android:name=".curso_details.VerCurso"
+            android:parentActivityName=".main_activity.MainActivity" />
+        <activity android:name=".main_activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -1,4 +1,4 @@
-package com.proyecto.jerbo.cursofacil.Adapters;
+package com.proyecto.jerbo.cursofacil.curso_details;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;

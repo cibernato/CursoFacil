@@ -1,4 +1,4 @@
-package com.proyecto.jerbo.cursofacil.Fragment;
+package com.proyecto.jerbo.cursofacil.curso_details;
 
 import android.media.ExifInterface;
 import android.os.Bundle;

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.VerCurso"
+    tools:context=".curso_details.VerCurso"
     android:orientation="vertical"
     android:id="@+id/ver_curso_content">
     <TextView

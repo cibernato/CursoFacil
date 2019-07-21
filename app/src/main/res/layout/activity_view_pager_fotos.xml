@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.ViewPagerFotos"
+    tools:context=".curso_details.ViewPagerFotos"
     android:orientation="vertical">
 
     <androidx.viewpager.widget.ViewPager
