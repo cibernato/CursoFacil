@@ -20,7 +20,9 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".calculadora_promedios.CalculadoraPromedio"
-            android:windowSoftInputMode="adjustPan" />
+
+
+            />
         <activity android:name=".curso_details.ViewPagerFotos" />
         <activity
             android:name=".curso_details.VerCurso"

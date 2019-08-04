@@ -31,15 +31,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Otras funciones "
+            android:text="Otras funciones todo xd ve pensando jerbo :v "
             android:layout_centerHorizontal="true"/>
-        <Button
-            android:id="@+id/calculadora_promedios"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calculadora"/>
+
     </RelativeLayout>
 
 

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center"
     android:orientation="horizontal">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -11,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_weight="2"
         android:hint="Nota"
-
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -30,6 +31,7 @@
         app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
@@ -38,11 +40,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/delete_promedio"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="0.5"
         android:background="#ffff"
+        android:gravity="center"
         app:icon="@drawable/ic_cancel_24dp" />
 
 </LinearLayout>

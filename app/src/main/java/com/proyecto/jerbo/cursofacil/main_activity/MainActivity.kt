@@ -47,9 +47,7 @@ class MainActivity : AppCompatActivity() {
             cursoSelected.putExtra("curso", cursos[recycler_view_cursos.getChildAdapterPosition(view)])
             startActivity(cursoSelected)
         }
-        calculadora_promedios.setOnClickListener{
-            startActivity(Intent(this,CalculadoraPromedio::class.java))
-        }
+
     }
 
 
