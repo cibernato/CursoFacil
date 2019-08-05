@@ -3,7 +3,6 @@ package com.proyecto.jerbo.cursofacil.curso_details
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
@@ -19,11 +18,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.proyecto.jerbo.cursofacil.main_activity.MainActivity
-import com.proyecto.jerbo.cursofacil.models.Curso
 import com.proyecto.jerbo.cursofacil.R
 import com.proyecto.jerbo.cursofacil.calculadora_promedios.CalculadoraPromedio
-import com.proyecto.jerbo.cursofacil.models.Promedio
+import com.proyecto.jerbo.cursofacil.main_activity.MainActivity
+import com.proyecto.jerbo.cursofacil.models.*
 import kotlinx.android.synthetic.main.activity_ver_curso.*
 import java.io.File
 import java.io.FilenameFilter
@@ -31,21 +29,17 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.ArrayList
 import java.util.Date
-import kotlin.Boolean
 import kotlin.Comparator
-import kotlin.Exception
-import kotlin.Int
-import kotlin.String
-import kotlin.arrayOf
-import kotlin.plus
 
-class VerCurso : AppCompatActivity() {
+class VerCurso : AppCompatActivity(), PhotoItem.EpoxyClickListener {
+
+
     private lateinit var fotos: ArrayList<String>
+    private lateinit var imgController: PhotoItemController
     private lateinit var pathToFile: String
     private lateinit var mCurrentPhotpPath: String
     private lateinit var elegido: Curso
-    private lateinit var fotosAdapter: FotosAdapter
-    private lateinit var lista_promedios: ArrayList<Promedio>
+    private lateinit var listPromedios: ArrayList<Promedio>
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
     private lateinit var gson: Gson
@@ -59,20 +53,18 @@ class VerCurso : AppCompatActivity() {
         setContentView(R.layout.activity_ver_curso)
         fotos = ArrayList()
         llenarFotos()
-        fotosAdapter = FotosAdapter(fotos)
-        recycler_view_cursos_fotos.adapter = fotosAdapter
+
+        imgController = PhotoItemController(fotos, this)
+        imgController.isDebugLoggingEnabled = true
+        imgController.requestModelBuild()
+        recycler_view_cursos_fotos.adapter = imgController.adapter
         recycler_view_cursos_fotos.layoutManager = GridLayoutManager(this, 3)
-        fotosAdapter.setOnClickListener { v ->
-            val a = Intent(baseContext, ViewPagerFotos::class.java)
-            a.putExtra("fotos", fotos)
-            a.putExtra("num", recycler_view_cursos_fotos.getChildAdapterPosition(v))
-            startActivityForResult(a, ELIMINADO)
-        }
+
         tomar_foto.setOnClickListener { dispatchTakePictureIntent() }
         if (Build.VERSION.SDK_INT >= 23) {
             requestPermissions(arrayOf(Manifest.permission.CAMERA), 2)
         }
-        lista_promedios = ArrayList()
+        listPromedios = ArrayList()
         checkSharedPreferences()
         calculadora_promedios.setOnClickListener {
             val promedio = Intent(this, CalculadoraPromedio::class.java)
@@ -90,10 +82,10 @@ class VerCurso : AppCompatActivity() {
         Log.e(TAG, "valor recibido $toParse")
         try {
             if (toParse == "[]") {
-                editor.putString("${elegido.name}", gson.toJson(lista_promedios))
+                editor.putString("${elegido.name}", gson.toJson(listPromedios))
                 editor.apply()
             } else {
-                lista_promedios = gson.fromJson(toParse, collectionType)
+                listPromedios = gson.fromJson(toParse, collectionType)
             }
         } catch (e: java.lang.Exception) {
             Log.e(TAG, "Metodo parseado da como resultado: $toParse")
@@ -111,6 +103,7 @@ class VerCurso : AppCompatActivity() {
                     println("image: " + inFile.name)
                     println(" size  : " + f.length())
                     fotos.add(inFile.absolutePath)
+
                 } else {
                     inFile.delete()
                 }
@@ -201,11 +194,17 @@ class VerCurso : AppCompatActivity() {
 
     }
 
+    override fun onClick(view: KotlinModel) { // From EpoxyListener
+        val a = Intent(baseContext, ViewPagerFotos::class.java)
+        a.putExtra("fotos", fotos)
+        a.putExtra("num", imgController.adapter.copyOfModels.indexOf(view))
+        startActivityForResult(a, ELIMINADO)
+    }
+
     companion object {
-        internal val REQUEST_IMAGE_CAPTURE = 1
-        internal val REQUEST_TAKE_PHOTO = 1
+        internal const val REQUEST_IMAGE_CAPTURE = 1
         private val EXTENSIONS = arrayOf("jpg")
-        internal val IMAGE_FILTER: FilenameFilter = FilenameFilter { dir, name ->
+        internal val IMAGE_FILTER: FilenameFilter = FilenameFilter { _, name ->
             for (ext in EXTENSIONS) {
                 if (name.endsWith(".$ext")) {
                     return@FilenameFilter true
@@ -213,7 +212,7 @@ class VerCurso : AppCompatActivity() {
             }
             false
         }
-        private val ELIMINADO = 3
+        private const val ELIMINADO = 3
         private val TAG = this::class.java.name
     }
 
@@ -222,14 +221,14 @@ class VerCurso : AppCompatActivity() {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK) {
             fotos.clear()
             llenarFotos()
-            fotosAdapter.notifyDataSetChanged()
+            imgController.requestModelBuild()
         }
 
         if (requestCode == ELIMINADO) {
             if (resultCode == Activity.RESULT_OK) {
                 fotos.clear()
                 llenarFotos()
-                fotosAdapter.notifyDataSetChanged()
+                imgController.requestModelBuild()
             }
         }
     }
