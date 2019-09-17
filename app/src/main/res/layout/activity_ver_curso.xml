@@ -1,50 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ver_curso_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".curso_details.VerCurso"
     android:orientation="vertical"
-    android:id="@+id/ver_curso_content">
+    tools:context=".curso_details.VerCurso"
+    >
+
     <TextView
+        android:id="@+id/status_vacio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="Empieza a tomar fotos pexd"
-        android:visibility="visible"
-        android:id="@+id/status_vacio"
         android:textAlignment="center"
-        android:layout_marginTop="15dp"
-        android:textSize="22sp"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Toamr fotex"
-            android:id="@+id/tomar_foto"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            android:paddingTop="15dp"
-            />
-        <Button
-            android:id="@+id/calculadora_promedios"
-            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-            android:layout_alignParentRight="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Calculadora"/>
-    </RelativeLayout>
+        android:textSize="22sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/tomar_foto"
+        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton.Icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:layout_marginRight="8dp"
+        android:paddingTop="15dp"
+        android:text="Toamr fotex"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toStartOf="@+id/calculadora_promedios"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/status_vacio" />
+
+    <Button
+        android:id="@+id/calculadora_promedios"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Calculadora"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tomar_foto"
+        app:layout_constraintTop_toBottomOf="@+id/status_vacio" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:padding="15dp"
+        android:id="@+id/recycler_view_cursos_fotos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/recycler_view_cursos_fotos" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:padding="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tomar_foto" />
 
 
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

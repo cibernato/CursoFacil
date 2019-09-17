@@ -3,4 +3,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_posible_camara">PosibleCamara</string>
     <string name="action_settings">Settings</string>
+    <string name="cursos_activos">CursoFacil.Activos</string>
+    <string name="cursos_archivados">CursoFacil.Archivados</string>
 </resources>

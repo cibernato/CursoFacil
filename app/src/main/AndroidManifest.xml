@@ -3,13 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.proyecto.jerbo.cursofacil">
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="true" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,16 +11,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".calculadora_promedios.CalculadoraPromedio"
-
-
-            />
+        <activity android:name=".archivados.Archivados"></activity>
+        <activity android:name=".calculadora_promedios.CalculadoraPromedio" />
         <activity android:name=".curso_details.ViewPagerFotos" />
         <activity
             android:name=".curso_details.VerCurso"
             android:parentActivityName=".main_activity.MainActivity" />
-        <activity android:name=".main_activity.MainActivity">
+        <activity
+            android:name=".main_activity.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,5 +37,12 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>

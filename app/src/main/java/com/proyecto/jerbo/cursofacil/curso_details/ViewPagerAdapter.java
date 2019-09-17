@@ -9,15 +9,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.proyecto.jerbo.cursofacil.R;
-
-import static com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.SCALE_TYPE_CENTER_CROP;
-import static com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.SCALE_TYPE_CENTER_INSIDE;
-import static com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView.SCALE_TYPE_START;
 
 public class ViewPagerAdapter extends PagerAdapter {
     Activity activity;
@@ -56,7 +51,7 @@ public class ViewPagerAdapter extends PagerAdapter {
         imageView.setMinimumWidth(width);
         try {
             ImageSource a = ImageSource.uri(fotos[position]);
-            imageView.setImage(a);
+            imageView.setImage(a,imageView.getState());
 
 
         }catch (Exception e){

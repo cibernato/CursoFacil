@@ -1,49 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".curso_details.ViewPagerFotos"
-    android:orientation="vertical">
+    tools:context=".curso_details.ViewPagerFotos">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="90" />
-    <GridLayout
-        android:id="@+id/detalles_foto"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/foto_eliminar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
-        android:orientation="horizontal"
-        android:columnCount="3"
-        android:rowCount="1">
-        <ImageButton
-            android:layout_columnWeight="1"
-            android:layout_height="match_parent"
-            android:id="@+id/foto_eliminar"
-            android:src="@drawable/ic_delete_black_24dp"
-            android:background="#00FFFDFD"
-            android:layout_marginLeft="8dp"/>
-        <ImageButton
-            android:layout_columnWeight="1"
-            android:layout_height="match_parent"
-            android:id="@+id/foto_compartir"
-            android:src="@drawable/ic_share_black_24dp"
-            android:background="#00FFFDFD"
-            android:layout_marginLeft="8dp"/>
+    <ImageButton
+        android:id="@+id/foto_eliminar"
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:background="#00FFFDFD"
+        android:src="@drawable/ic_delete_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/foto_compartir"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_pager" />
 
-        <ImageButton
-            android:layout_columnWeight="1"
-            android:layout_height="match_parent"
-            android:id="@+id/foto_detalle"
-            android:src="@drawable/ic_three_dots_svgrepo_com"
-            android:background="#00FFFDFD"
-            android:rotation="90"
-            android:layout_marginLeft="8dp"/>
-    </GridLayout>
+    <ImageButton
+        android:id="@+id/foto_compartir"
 
-</LinearLayout>
+        android:layout_width="126dp"
+        android:layout_height="wrap_content"
+        android:background="#00FFFDFD"
+        android:src="@drawable/ic_share_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/foto_eliminar"
+        app:layout_constraintEnd_toStartOf="@+id/foto_detalle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/foto_eliminar"
+        app:layout_constraintTop_toTopOf="@+id/foto_eliminar"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageButton
+        android:id="@+id/foto_detalle"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:background="#00FFFDFD"
+        android:rotation="90"
+        android:src="@drawable/ic_three_dots_svgrepo_com"
+        app:layout_constraintBottom_toBottomOf="@+id/foto_compartir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/foto_compartir"
+        app:layout_constraintTop_toTopOf="@+id/foto_compartir"
+        app:layout_constraintVertical_bias="1.0" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

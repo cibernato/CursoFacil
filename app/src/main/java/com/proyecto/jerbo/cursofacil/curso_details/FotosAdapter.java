@@ -27,7 +27,7 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter.ViewHolder> 
     @Override
 
     public FotosAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.foto_item_list, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.image_test_photo, viewGroup, false);
         v.setOnClickListener(this);
         return new ViewHolder(v);
     }
@@ -60,7 +60,7 @@ public class FotosAdapter extends RecyclerView.Adapter<FotosAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            foto = itemView.findViewById(R.id.item_foto);
+            foto = itemView.findViewById(R.id.photo_item);
             this.v = itemView;
         }
     }
