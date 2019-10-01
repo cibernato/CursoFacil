@@ -57,7 +57,6 @@ class VerCurso : AppCompatActivity(), PhotoItem.EpoxyClickListener {
         setContentView(R.layout.activity_ver_curso)
         fotos = ArrayList()
         llenarFotos()
-        var asd= R.string.action_settings
         imgController = PhotoItemController(fotos, this)
         imgController.isDebugLoggingEnabled = true
         imgController.requestModelBuild()
@@ -213,15 +212,20 @@ class VerCurso : AppCompatActivity(), PhotoItem.EpoxyClickListener {
     private fun eliminarDeSharedPrefrences(flag :Int) {
         val collectionType = object : TypeToken<ArrayList<Curso>>() {}.type
         val cursosSharedPrefrences = sharedPreferences.getString(getString(R.string.cursos_activos), "[]")
+        val archivados = sharedPreferences.getString(getString(R.string.cursos_archivados), "[]")
         val convertido : ArrayList<Curso>
         convertido = gson.fromJson(cursosSharedPrefrences, collectionType)
+        val convertidoArchivados : ArrayList<Curso> = gson.fromJson(archivados, collectionType)
         convertido.remove(convertido.find { it.name == elegido.name })
+        convertidoArchivados.remove(convertido.find { it.name == elegido.name })
         if (flag ==0){
             elegido.archivado= true
-            convertido.add(elegido)
+            convertidoArchivados.add(elegido)
         }
         Log.e("TAG",convertido.toString())
+        Log.e("Archivados",convertidoArchivados.toString())
         editor.putString(getString(R.string.cursos_activos), gson.toJson(convertido))
+        editor.putString(getString(R.string.cursos_archivados), gson.toJson(convertidoArchivados))
         editor.apply()
 
     }

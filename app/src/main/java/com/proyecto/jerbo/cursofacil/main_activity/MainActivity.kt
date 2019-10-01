@@ -177,6 +177,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         var convertido: ArrayList<Curso> = ArrayList()
 
         val cursosSharedPrefrences = sharedPreferences.getString(getString(R.string.cursos_activos), "[]")
+        val archivadosPrefrences = sharedPreferences.getString(getString(R.string.cursos_archivados), "[]")
         editor = sharedPreferences.edit()
         try {
             if (cursosSharedPrefrences != "[]") {
@@ -185,13 +186,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } catch (e: java.lang.Exception) {
             Log.e(TAG, "Metodo parseado da como resultado: $cursosSharedPrefrences")
         }
-        val archivados: ArrayList<Curso> = ArrayList()
+        Log.e(TAG, "SharedPreferences: $convertido")
+        val archivados: java.util.ArrayList<Curso> =  gson.fromJson(archivadosPrefrences, collectionType)
         if (cursos.isEmpty()) {
             val f = File(Environment.getExternalStorageDirectory().toString() + File.separator + "Curso Facil")
             val files = f.listFiles()
             try {
                 for (inFile in files) {
-                    if (inFile.isDirectory) {
+                    if (inFile.isDirectory && !archivados.contains(Curso(inFile.name, inFile, true))) {
                         cursos.add(Curso(inFile.name, inFile, false))
                     }
                 }
@@ -210,8 +212,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             cursos.sortBy { it.name }
         }
-        Log.e(TAG, "Cursos Activos $cursos")
+//        Log.e(TAG, "Cursos Activos $cursos")
         Log.e(TAG, "Cursos Archivados $archivados")
+
         editor.putString(getString(R.string.cursos_archivados),gson.toJson(archivados))
         editor.putString(getString(R.string.cursos_activos), gson.toJson(cursos))
         editor.apply()
