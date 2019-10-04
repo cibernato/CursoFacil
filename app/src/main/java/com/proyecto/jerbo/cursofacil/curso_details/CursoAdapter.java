@@ -2,12 +2,15 @@ package com.proyecto.jerbo.cursofacil.curso_details;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import com.proyecto.jerbo.cursofacil.models.Curso;
 import com.proyecto.jerbo.cursofacil.R;
+
 import java.util.ArrayList;
 
 public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.ViewHolder> implements View.OnClickListener {
@@ -44,14 +47,16 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.ViewHolder> 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView name ;
+        TextView name;
         View v;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.curso_item_list_text);
-            this.v=itemView;
+            this.v = itemView;
         }
     }
+
     public void setOnClickListener(View.OnClickListener listener) {
         this.listener = listener;
     }
